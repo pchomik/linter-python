@@ -1,0 +1,25 @@
+{
+  "name": "linter-python",
+  "main": "./lib/init",
+  "version": "0.1.0",
+  "description": "A short description of your package",
+  "repository": "https://github.com/pchomik/linter-python",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  },
+  "dependencies": {
+    "atom-package-deps": "^4.0.1",
+    "xregexp": "~3.1.0"
+  },
+  "package-deps": [
+    "linter"
+  ]
+}
