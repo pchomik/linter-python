@@ -4,3 +4,7 @@
 :e-mail: pawel.chomicki@gmail.com
 """
 from os import path
+
+
+if path.exists(1):
+    pass
