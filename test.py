@@ -1,10 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-:author: Pawel Chomicki
-:e-mail: pawel.chomicki@gmail.com
-"""
+"""Test module."""
 from os import path
 
 
-if path.exists(1):
-    pass
+def main():
+    """Some docstring."""
+    if path.exists('/tmp'):
+        return True
+
+
+if __name__ == '__main__':
+    main()

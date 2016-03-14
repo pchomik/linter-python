@@ -1,5 +1,5 @@
 # linter-python package
 
-A short description of your package.
+Plugin to lint python files after save. Whole logic based on pylama and pylama-pylint applications.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![A screenshot of your package](https://raw.githubusercontent.com/pchomik/linter-python/master/example.gif)

@@ -1,8 +1,8 @@
 {
   "name": "linter-python",
   "main": "./lib/init",
-  "version": "0.1.0",
-  "description": "A short description of your package",
+  "version": "1.0.0",
+  "description": "Lint python file after save. Lint based on pylama application.",
   "repository": "https://github.com/pchomik/linter-python",
   "license": "MIT",
   "engines": {
@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "atom-package-deps": "^4.0.1",
-    "child-process-es6-promise": "~1.0.0",
-    "react": "~0.14.7"
+    "child-process-es6-promise": "^1.0.0",
+    "react": "^0.14.7"
   },
   "package-deps": [
     "linter"
