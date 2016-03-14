@@ -33,4 +33,5 @@ Package license is available [here](https://raw.githubusercontent.com/pchomik/li
 ## Contact
 
 Please create issue in case of any question or feature request.
+
 Pull requests are welcome.
