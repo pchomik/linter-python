@@ -12,7 +12,15 @@ Plugin to lint python files after save. Whole logic based on pylama and pylama-p
 
 ## Plugin installation
 
+### Atom plugin installation
+
 ![Package usage](https://raw.githubusercontent.com/pchomik/linter-python/master/img/install.gif)
+
+### Pylama installation
+
+```
+pip install pylama pylama-pylint
+```
 
 ## Plugin configuration
 
