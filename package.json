@@ -18,7 +18,8 @@
   "dependencies": {
     "atom-package-deps": "^4.0.1",
     "child-process-es6-promise": "^1.0.0",
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "temp": "^0.8.3"
   },
   "package-deps": [
     "linter"
