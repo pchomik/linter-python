@@ -8,3 +8,4 @@
 
 ## 2.1.0
 * Move documentation to separate project
+* Add trigger options: after save, after change, after save and change
