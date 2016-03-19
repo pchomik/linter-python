@@ -10,3 +10,4 @@
 * Move documentation to separate project
 * Add trigger options: after save, after change, after save and change
 * Add option to define underscore type and size
+* Update package description
