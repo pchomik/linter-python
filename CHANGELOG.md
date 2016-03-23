@@ -1,3 +1,7 @@
+#### 2.1.4
+* Fix error with lint plugins order
+* Fix error related to messages without error code
+
 #### 2.1.3
 * Fix error message
 * Set whole line for errors with position 0

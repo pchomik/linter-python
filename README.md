@@ -50,6 +50,13 @@ If pip is something new for you please look [here](https://pip.pypa.io/en/stable
 Please be informed that plugin has to create temporary files to lint file in the fly. In case of any performance issues please try
 to change trigger option to "Lint only after save". For such option temporary files are not needed.
 
+## Pylama results depends on plugin order
+
+Last discovered that pylama plugin order may change linting result. Issue is under investigated and will be reported
+to pylama as soon as I get time to create test scenarios.
+
+My tests show that the most trusted configuration is: mccabe,pyflakes,pylint,pep8,pep257
+
 ## Contribution
 
 Pull requests are welcome.
@@ -63,6 +70,10 @@ Package license is available [here](https://raw.githubusercontent.com/pchomik/li
 Please create issue in case of any question or feature request.
 
 ## Changelog
+
+#### 2.1.4
+* Fix error with lint plugins order
+* Fix error related to messages without error code
 
 #### 2.1.3
 * Fix error message
