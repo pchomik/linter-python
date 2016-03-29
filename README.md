@@ -71,9 +71,18 @@ Please create issue in case of any question or feature request.
 
 ## Changelog
 
-#### 2.1.4
+#### 2.1.6
+* Add option to run only single lint instance
+* Fix error with blocked lint operation
+* Change way how results are returned to linter
+
+#### 2.1.5
 * Fix error with lint plugins order
 * Fix error related to messages without error code
+
+#### 2.1.4
+* Reduce plugin dependencies
+* Reduce plugin startup
 
 #### 2.1.3
 * Fix error message
