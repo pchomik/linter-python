@@ -10,6 +10,18 @@ Plugin to lint python files. Whole logic based on pylama and pylama-pylint appli
 * pylama
 * pylama-pylint (optional)
 
+## Atom linters
+
+* ![Atom Linters](http://atomlinter.github.io/)
+
+#### Linters for python
+
+* ![linter-python](https://atom.io/packages/linter-python)
+* ![linter-pep8](https://atom.io/packages/linter-pep8)
+* ![linter-pydocstyle](https://atom.io/packages/linter-pydocstyle)
+* ![linter-flake8](https://atom.io/packages/linter-flake8)
+* ![linter-pylama](https://atom.io/packages/linter-pylama)
+
 ## Plugin installation
 
 #### Atom plugin installation
