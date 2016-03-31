@@ -1,3 +1,6 @@
+#### 2.1.7
+* Fix error if file is in edition without project
+
 #### 2.1.6
 * Add option to run only single lint instance
 * Fix error with blocked lint operation
