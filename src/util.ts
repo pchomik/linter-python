@@ -8,9 +8,9 @@ const logger:Logger = Logger.getInstance();
 export class TempFileHandler {
     track: any;
 
-    create(TextEditor) {
+    create(text) {
         let tempFile = temp.openSync({suffix: '.py'});
-        fs.writeSync(tempFile.fd, TextEditor.getText());
+        fs.writeSync(tempFile.fd, text);
         fs.closeSync(tempFile.fd);
         return new TempFileWrapper(tempFile);
     }
@@ -40,15 +40,14 @@ export class TempFileWrapper {
 
 
 export function canExecute(path) {
+    logger.log(">>> EXECUTE CHECK <<<");
     try {
         fs.accessSync(path, fs.R_OK | fs.X_OK);
-        logger.log(">>> EXECUTE CHECK <<<");
         logger.log("> Path can be executed");
         logger.log(">>> END <<<");
         return true;
     }
     catch(err) {
-        logger.log(">>> EXECUTE CHECK <<<");
         logger.log("> Path can not be executed:");
         logger.log(err);
         logger.log(">>> END <<<");
@@ -58,16 +57,17 @@ export function canExecute(path) {
 
 
 export function canRead(path) {
+    logger.log(">>> READ CHECK <<<");
     try {
         fs.accessSync(path, fs.R_OK);
-        logger.log(">>> READ CHECK <<<");
-        logger.log(">>> Path can be read");
+        logger.log("> Path can be read");
+        logger.log(">>> END <<<")
         return true;
     }
     catch(err) {
-        logger.log(">>> READ CHECK <<<");
         logger.log("> Path can not be read");
         logger.log(err);
+        logger.log(">>> END <<<")
         return false;
     }
 }

@@ -43,23 +43,23 @@ export class PluginLinter {
 
         if (this.running == true && this.runtimeConfig.limitToSingleInstance == true) {
             logger.log(">>> EXECUTION SKIPPED <<<");
-            return Promise.resolve(null);
+            return Promise.resolve([]);
         }
 
         logger.log(">>> INPUT FOR LINTING <<<")
-        logger.log(">   filePath = " + filePath);
-        logger.log("> projectDir = " + projectDir);
-        logger.log(">        cmd = " + cmd);
+        logger.log(`>   filePath = ${filePath}`);
+        logger.log(`> projectDir = ${projectDir}`);
+        logger.log(`>        cmd = ${cmd}`);
         logger.log(">       args = []")
         logger.log('>>> END <<<');
 
         if (!canExecute(cmd)) {
-            atom.notifications.addError("Provided path doesn't exist.\n\n" + cmd + "\n\nPlease fix pylama path.");
-            return Promise.resolve(null);
+            atom.notifications.addError(`Provided path doesn't exist.\n\n${cmd}\n\nPlease fix pylama path.`);
+            return Promise.resolve([]);
         }
 
-        if (this.isForLintOfFly(textEditor)) {
-            this.tempFile = this.tempFileHandler.create(textEditor);
+        if (this.isForLintOnFly(textEditor)) {
+            this.tempFile = this.tempFileHandler.create(textEditor.getText());
             let parser = new OnFlyParameterParser();
             let result= parser.parse(projectDir, this.tempFile.path, this.runtimeConfig);
             args = result.args;
@@ -70,11 +70,11 @@ export class PluginLinter {
             args = result.args;
             projectDir = result.projectDir;
         } else {
-            return Promise.resolve(null);
+            return Promise.resolve([]);
         }
 
         logger.log(">>> NEW ARGS <<<");
-        logger.log("> " + args);
+        logger.log(`> ${args}`);
         logger.log('>>> END <<<');
 
         return this.runner.run(textEditor, this.runtimeConfig, projectDir, cmd, args, this.running, this.tempFile);
@@ -91,8 +91,8 @@ export class PluginLinter {
         return os.tmpdir();
     }
 
-    isForLintOfFly(textEditor) {
-        if (textEditor.isModified() && this.runtimeConfig.lintOnFly) {
+    isForLintOnFly(textEditor) {
+        if (this.runtimeConfig.lintOnFly && textEditor.isModified()) {
             return true;
         } else {
             return false;
@@ -100,7 +100,7 @@ export class PluginLinter {
     }
 
     isForLintOnSave(textEditor) {
-        if (!textEditor.isModified() && this.runtimeConfig.lintOnSave) {
+        if (this.runtimeConfig.lintOnSave && !textEditor.isModified()) {
             return true;
         } else {
             return false;

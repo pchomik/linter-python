@@ -241,7 +241,7 @@ export class PluginRuntimeConfig {
     /** Method to simplify variable reading */
     readConfigValue(value) {
         try {
-            return atom.config.get('linter-python.' + value);
+            return atom.config.get(`linter-python.${value}`);
         }
         catch(err) {
             console.log(err);
@@ -256,16 +256,16 @@ export class PluginRuntimeConfig {
 
     public logCurrentState() {
         logger.log(">>> PLUGIN INITIAL CONFIGURATION <<<");
-        logger.log(">            pylamaArgs = " + this.pylamaArgs);
-        logger.log(">        executablePath = " + this.executablePath);
-        logger.log(">           enableDebug = " + this.enableDebug);
-        logger.log(">          lintOnChange = " + this.lintOnChange);
-        logger.log(">             linkOnFly = " + this.lintOnFly);
-        logger.log(">            lintOnSave = " + this.lintOnSave);
-        logger.log(">        optionsFileSet = " + this.optionsFileSet);
-        logger.log(">         underlineType = " + this.underlineType);
-        logger.log(">         underlineSize = " + this.underlineSize);
-        logger.log("> limitToSingleInstance = " + this.limitToSingleInstance);
+        logger.log(`>            pylamaArgs = ${this.pylamaArgs}`);
+        logger.log(`>        executablePath = ${this.executablePath}`);
+        logger.log(`>           enableDebug = ${this.enableDebug}`);
+        logger.log(`>          lintOnChange = ${this.lintOnChange}`);
+        logger.log(`>             linkOnFly = ${this.lintOnFly}`);
+        logger.log(`>            lintOnSave = ${this.lintOnSave}`);
+        logger.log(`>        optionsFileSet = ${this.optionsFileSet}`);
+        logger.log(`>         underlineType = ${this.underlineType}`);
+        logger.log(`>         underlineSize = ${this.underlineSize}`);
+        logger.log(`> limitToSingleInstance = ${this.limitToSingleInstance}`);
         logger.log('>>> END <<<');
     }
 }

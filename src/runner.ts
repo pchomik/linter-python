@@ -20,7 +20,9 @@ export class ProcessRunner {
             let messages = []
             cp.spawn(cmd, args, {cwd: projectDir})
             .then((result) => {
-                logger.log(">>> Raw output \n " + result.stdout);
+                logger.log(">>> RAW OUTPUT <<<");
+                logger.log(result.stdout);
+                logger.log(">>> END <<<");
                 let parsedLines = this.parser.parseLines(result.stdout);
                 for (let parsedLine of parsedLines) {
                     let message = this.parser.buildMessage(textEditor, parsedLine, config);
@@ -33,13 +35,15 @@ export class ProcessRunner {
                 return resolve(messages);
             })
             .catch((error) => {
-                atom.notifications.addError("Execution finished with error:\n\n" + error);
-                logger.log(">>> Execution error: \n " + error);
+                atom.notifications.addError(`Execution finished with error:\n\n${error}`);
+                logger.log(">>> EXECUTION ERROR <<<");
+                logger.log(error);
+                logger.log(">>> END <<<");
                 runningFlag = false;
                 if(tempFile) {
                     tempFile.clean();
                 }
-                return resolve(null);
+                return resolve([]);
             });
         })
     }

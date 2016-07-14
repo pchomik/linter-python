@@ -57,24 +57,30 @@ export class MessageParser {
 
         let text = this.buildErrorText(result);
         let range = calculateUnderlineRange(line, parseInt(result.row), parseInt(result.col), config);
-        logger.log(">>> New message: \n    type: " + resultType + "\n    text: " + text + "\n    filePath: " + filePath + "\n    range: " + range);
-        return {
+        let message = {
             type: resultType,
             html: text,
             filePath: filePath,
             range: range,
         };
+        logger.log(">>> NEW MESSAGE <<");
+        logger.log(`>     type = ${message.type}`)
+        logger.log(`>     html = ${message.html}`)
+        logger.log(`> filePath = ${message.filePath}`)
+        logger.log(`>    range = ${message.range}`)
+        logger.log(">>> END <<<");
+        return message;
     }
 
     buildErrorText(result) {
         if (!result.tool) {
-            return result.error + ' ' + result.message;
+            return `${result.error} ${result.message}`;
         }
         else if(result.tool == 'mccabe') {
-            return  result.error + ' ' + result.message + ' [' + result.tool + ']';
+            return `${result.error} ${result.message} [${result.tool}]`;
         }
         else {
-            return '<a href="' + docUrl + result.tool + '.md#' + result.error.toLowerCase() + '" style="text-decoration: none;">' + result.error + '</a> ' + result.message + ' [' + result.tool + ']';
+            return `<a href="${docUrl}${result.tool}.md#${result.error.toLowerCase()}" style="text-decoration: none;">${result.error}</a> ${result.message} [${result.tool}]`;
         }
     }
 }
@@ -96,7 +102,7 @@ export class OnFlyParameterParser {
         projectDir = path.dirname(filePath);
         if (canRead(pylama_options_file)) {
             return {
-                'args': config.pylamaArgs.concat(['--sort', 'E,W,D', '-o', pylama_options_file, '-f', 'pep8']),
+                'args': config.pylamaArgs.concat(['--sort', 'E,W,D', '-o', pylama_options_file, '-f', 'pep8', filePath]),
                 'projectDir': projectDir
             }
         } else {
