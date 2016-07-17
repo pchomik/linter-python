@@ -71,17 +71,3 @@ export function canRead(path) {
         return false;
     }
 }
-
-
-export function calculateUnderlineRange(line, rowNumber, colNumber, config) {
-    if (!line) {
-        return [[rowNumber - 1 , 0], [rowNumber - 1, 0]];
-    }
-    if (config.underlineType == "Whole line" || colNumber === 0) {
-        return [[rowNumber - 1, 0],[rowNumber - 1, line.length]];
-    }
-
-    let startCol = colNumber - config.underlineSize >= 0 ? colNumber - config.underlineSize : 0;
-    let endCol = colNumber  + config.underlineSize <= line.length ? colNumber + config.underlineSize : line.length;
-    return [[rowNumber - 1, startCol],[rowNumber - 1, endCol]];
-}

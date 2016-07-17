@@ -2,15 +2,12 @@
 
 declare var atom;
 
-import { PluginConfig } from './config';
 import { PluginLinter } from './linter';
 import { Logger } from './logger';
 
 const logger:Logger = Logger.getInstance();
 
 export = {
-    config:PluginConfig,
-
     activate(state) {
         logger.log(">>> PACKAGE \"python-linter\" ACTIVATED <<<");
     },

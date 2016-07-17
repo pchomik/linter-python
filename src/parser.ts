@@ -2,7 +2,7 @@
  This module should return also link to github page where all errors
  are available.*/
 import { Logger } from './logger';
-import { canRead, calculateUnderlineRange } from './util';
+import { canRead } from './util';
 
 const docUrl = 'https://github.com/pchomik/linter-python-doc/blob/master/errors/'
 
@@ -10,6 +10,7 @@ const genericRegexp = /(.*):(\d+):(\d+):\s(.\d+)\s*(.*)\[(.*)\]$/;  // file:row:
 const pyflakesRegexp = /(.*):(\d+):(\d+):\s*(.*)\[(.*)\]$/;         // file:row:col:message:tool
 const logger: Logger = Logger.getInstance();
 const path = require('path');
+const atomLinter = require('atom-linter');
 
 
 export class MessageParser {
@@ -22,8 +23,8 @@ export class MessageParser {
             if (found) {
                 results.push({
                     'fileName': found[1],
-                    'row': found[2],
-                    'col': found[3],
+                    'row': Number(found[2]),
+                    'col': Number(found[3]),
                     'error': found[4],
                     'message': found[5],
                     'tool': found[6]
@@ -34,8 +35,8 @@ export class MessageParser {
                 if (found) {
                     results.push({
                         'fileName': found[1],
-                        'row': found[2],
-                        'col': found[3],
+                        'row': Number(found[2]),
+                        'col': Number(found[3]),
                         'error': '',
                         'message': found[4],
                         'tool': found[5]
@@ -54,9 +55,8 @@ export class MessageParser {
         if (result.error.indexOf('E') > -1 || result.error.indexOf('F') > -1) {
             resultType = 'Error';
         }
-
         let text = this.buildErrorText(result);
-        let range = calculateUnderlineRange(line, parseInt(result.row), parseInt(result.col), config);
+        let range = atomLinter.rangeFromLineNumber(textEditor, result.row -1, result.col - 1);
         let message = {
             type: resultType,
             html: text,
