@@ -20,6 +20,7 @@ export class PluginRuntimeConfig {
     underlineType: string = 'Whole line';
     underlineSize: number = 2;
     limitToSingleInstance: boolean = true;
+    linkColor: any = "";
     subs: any;
 
     constructor() {
@@ -43,6 +44,7 @@ export class PluginRuntimeConfig {
         this.subs.add(atom.config.observe('linter-python.underlineSize', {}, this.updateConfig));
         this.subs.add(atom.config.observe('linter-python.underlineType', {}, this.updateConfig));
         this.subs.add(atom.config.observe('linter-python.limitToSingleInstance', {}, this.updateConfig));
+        this.subs.add(atom.config.observe('linter-python.linkColor', {}, this.updateConfig));
     }
 
     /** Set default cofiguration values */
@@ -54,6 +56,7 @@ export class PluginRuntimeConfig {
 
         this.executablePath = this.readConfigValue('executablePath');
         this.limitToSingleInstance = this.readConfigValue('limitToSingleInstance');
+        this.linkColor = this.readConfigValue('linkColor');
 
         this.underlineType = this.readConfigValue('underlineType');
         if (this.underlineType == 'Only place with error') {
@@ -164,6 +167,7 @@ export class PluginRuntimeConfig {
         logger.log(`>         underlineType = ${this.underlineType}`);
         logger.log(`>         underlineSize = ${this.underlineSize}`);
         logger.log(`> limitToSingleInstance = ${this.limitToSingleInstance}`);
+        logger.log(`>             linkColor = ${this.linkColor}`);
         logger.log('>>> END <<<');
     }
 }

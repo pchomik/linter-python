@@ -55,7 +55,7 @@ export class MessageParser {
         if (result.error.indexOf('E') > -1 || result.error.indexOf('F') > -1) {
             resultType = 'Error';
         }
-        let text = this.buildErrorText(result);
+        let text = this.buildErrorText(result, config);
         let range = atomLinter.rangeFromLineNumber(textEditor, result.row -1, result.col - 1);
         let message = {
             type: resultType,
@@ -72,7 +72,7 @@ export class MessageParser {
         return message;
     }
 
-    buildErrorText(result) {
+    buildErrorText(result, config) {
         if (!result.tool) {
             return `${result.error} ${result.message}`;
         }
@@ -80,7 +80,7 @@ export class MessageParser {
             return `${result.error} ${result.message} [${result.tool}]`;
         }
         else {
-            return `<a href="${docUrl}${result.tool}.md#${result.error.toLowerCase()}" style="text-decoration: none;">${result.error}</a> ${result.message} [${result.tool}]`;
+            return `<a href="${docUrl}${result.tool}.md#${result.error.toLowerCase()}" style="text-decoration: none; color: ${config.linkColor.toHexString()};">${result.error}</a> ${result.message} [${result.tool}]`;
         }
     }
 }

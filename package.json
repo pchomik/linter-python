@@ -1,7 +1,7 @@
 {
     "name": "linter-python",
     "main": "./lib/init",
-    "version": "3.0.0",
+    "version": "2.1.7",
     "description": "Linter for python files. Lint operation based on pylama application.",
     "repository": "https://github.com/pchomik/linter-python",
     "license": "MIT",
@@ -133,7 +133,14 @@
         "limitToSingleInstance": {
             "type": "boolean",
             "default": true,
-            "description": "Limit how many pylama binaries can be executed. By default is set to single instance."
+            "description": "Limit how many pylama binaries can be executed. By default is set to single instance.",
+            "order": 15
+        },
+        "linkColor": {
+            "type": "color",
+            "default": "#bf6815",
+            "description": "Link color for all errors/warning/types",
+            "order": 16
         }
     }
 }
