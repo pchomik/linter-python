@@ -1,18 +1,24 @@
 /** Plugin initialization needed by Atom editor and linter plugin. */
-"use strict";
-var linter_1 = require('./linter');
-var logger_1 = require('./logger');
-var logger = logger_1.Logger.getInstance();
-module.exports = {
-    activate: function (state) {
+
+declare var atom;
+
+import { PluginLinter } from './linter';
+import { Logger } from './logger';
+
+const logger:Logger = Logger.getInstance();
+
+export = {
+    activate(state) {
         logger.log(">>> PACKAGE \"python-linter\" ACTIVATED <<<");
     },
-    deactivate: function () {
+
+    deactivate() {
         logger.log(">>> PACKAGE \"python-linter\" DEACTIVATED <<<");
     },
-    provideLinter: function () {
-        var linter = new linter_1.PluginLinter();
-        var provider = {
+
+    provideLinter() {
+        const linter = new PluginLinter();
+        const provider = {
             name: 'Python Linter',
             grammarScopes: ['source.python'],
             scope: 'file',
@@ -21,5 +27,4 @@ module.exports = {
         };
         return provider;
     }
-};
-//# sourceMappingURL=init.js.map
+}

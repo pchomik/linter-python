@@ -1,4 +1,4 @@
-"""Test module."""
+"""Some."""
 from os import path
 
 
