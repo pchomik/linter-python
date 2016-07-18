@@ -1,3 +1,10 @@
+#### 3.0.4
+* Rewrite whole plugin to typescript
+* Fix #23 Remove logic responsible by disabling console
+* Implement #22 Link for plugin errors
+* Implement #17 Change "Lint trigger" option names
+* Fix few deployment issues
+
 #### 2.1.7
 * Fix error if file is in edition without project
 

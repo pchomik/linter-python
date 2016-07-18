@@ -69,9 +69,26 @@ to pylama project as soon as I get time to create test scenarios.
 
 Tests show that the most trusted configuration is: mccabe,pyflakes,pylint,pep8,pep257
 
+#### Pyflakes plugin may change pylama result
+
+New issue was created in pylama project. Pylama results are not constant when pyflakes plugin is enabled.
+
+Issue details are available [here](https://github.com/klen/pylama/issues/67).
+
+## Plugin errors
+
+Starting from plugin version 3.0.0 error output provides link to error description available on GitHub.
+
+Thanks to @linickx who created all pages. Please provide more pull requests if you like to create single place for all python defined errors.
+
 ## Contribution
 
-Pull requests are welcome.
+Pull requests, issues, issue investigation, reviews are more than welcome.
+
+## Constributors
+
+* @linickx
+* @Arcanemagus
 
 ## License
 
@@ -87,6 +104,14 @@ This section contains changes from last 3 releases.
 
 Full list of changes is available [here](https://raw.githubusercontent.com/pchomik/linter-python/master/CHANGELOG.md)
 
+#### 3.0.4
+* Rewrite whole plugin to typescript
+* Fix #23 Remove logic responsible by disabling console
+* Implement #22 Link for plugin errors
+* Implement #17 Change "Lint trigger" option names
+* Fix few deployment issues
+* Add colorLink option
+
 #### 2.1.7
 * Fix error if file is in edition without project
 
@@ -94,7 +119,3 @@ Full list of changes is available [here](https://raw.githubusercontent.com/pchom
 * Add option to run only single lint instance
 * Fix error with blocked lint operation
 * Change way how results are returned to linter
-
-#### 2.1.5
-* Fix error with lint plugins order
-* Fix error related to messages without error code
