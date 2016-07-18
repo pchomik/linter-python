@@ -4,6 +4,7 @@
 * Implement #22 Link for plugin errors
 * Implement #17 Change "Lint trigger" option names
 * Fix few deployment issues
+* Add colorLink option
 
 #### 2.1.7
 * Fix error if file is in edition without project

@@ -77,7 +77,7 @@ Issue details are available [here](https://github.com/klen/pylama/issues/67).
 
 ## Plugin errors
 
-Starting from plugin version 3.0.0 error output provides link to error description available on GitHub.
+Starting from plugin version 3.0.0 error output provides link to error description available on GitHub [project](https://github.com/pchomik/linter-python-doc/blob/master/errors/).
 
 Thanks to @linickx who created all pages. Please provide more pull requests if you like to create single place for all python defined errors.
 
