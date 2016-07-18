@@ -9,6 +9,7 @@ const logger:Logger = Logger.getInstance();
 
 export = {
     activate(state) {
+        require('atom-package-deps').install('linter-python');
         logger.log(">>> PACKAGE \"python-linter\" ACTIVATED <<<");
     },
 
