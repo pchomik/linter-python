@@ -1,7 +1,7 @@
 {
   "name": "linter-python",
   "main": "./lib/init",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Linter for python files. Lint operation based on pylama application.",
   "repository": "https://github.com/pchomik/linter-python",
   "license": "MIT",
