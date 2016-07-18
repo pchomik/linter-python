@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "npm run tsc:w",
-    "postinstall": "typings install",
+    "afterinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
