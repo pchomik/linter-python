@@ -85,7 +85,7 @@ Thanks to @linickx who created all pages. Please provide more pull requests if y
 
 Pull requests, issues, issue investigation, reviews are more than welcome.
 
-## Constributors
+## Contributors
 
 * @linickx
 * @Arcanemagus
