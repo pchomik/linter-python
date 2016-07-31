@@ -4,6 +4,7 @@ import { ProcessRunner } from './runner';
 import { PluginRuntimeConfig } from './config';
 import { SaveParameterParser, OnFlyParameterParser } from './parser';
 import { Logger } from './logger';
+import { Cache } from './cache';
 import { TempFileHandler, canExecute, TempFileWrapper } from './util';
 
 const fs = require('fs');
@@ -11,6 +12,7 @@ const os = require('os');
 const temp = require('temp');
 const path = require('path');
 const logger:Logger = Logger.getInstance();
+const cache:Cache = Cache.getInstance();
 
 declare var atom;
 
@@ -21,6 +23,7 @@ export class PluginLinter {
     tempFileHandler: TempFileHandler;
     running: boolean;
     tempFile: TempFileWrapper;
+    lastFilePath: String;
 
     constructor() {
         this.runtimeConfig = new PluginRuntimeConfig();
@@ -41,9 +44,11 @@ export class PluginLinter {
         let cmd = this.runtimeConfig.executablePath;
         let args = [];
 
+        cache.set(filePath);
+
         if (this.running == true && this.runtimeConfig.limitToSingleInstance == true) {
             logger.log(">>> EXECUTION SKIPPED <<<");
-            return Promise.resolve([]);
+            return Promise.resolve(cache.get());
         }
 
         logger.log(">>> INPUT FOR LINTING <<<")
@@ -55,7 +60,7 @@ export class PluginLinter {
 
         if (!canExecute(cmd)) {
             atom.notifications.addError(`Provided path doesn't exist.\n\n${cmd}\n\nPlease fix pylama path.`);
-            return Promise.resolve([]);
+            return Promise.resolve(cache.get());
         }
 
         if (this.isForLintOnFly(textEditor)) {
@@ -70,7 +75,7 @@ export class PluginLinter {
             args = result.args;
             projectDir = result.projectDir;
         } else {
-            return Promise.resolve([]);
+            return Promise.resolve(cache.get());
         }
 
         logger.log(">>> NEW ARGS <<<");

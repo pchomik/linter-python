@@ -1,9 +1,11 @@
 /** Module to handle process execution. */
 import { Logger } from './logger';
 import { MessageParser } from './parser';
+import { Cache } from './cache';
 
 const cp = require('child-process-es6-promise');
 const logger:Logger = Logger.getInstance();
+const cache:Cache = Cache.getInstance();
 
 declare var atom;
 
@@ -32,6 +34,7 @@ export class ProcessRunner {
                 if(tempFile) {
                     tempFile.clean();
                 }
+                cache.store(messages);
                 return resolve(messages);
             })
             .catch((error) => {
@@ -43,7 +46,7 @@ export class ProcessRunner {
                 if(tempFile) {
                     tempFile.clean();
                 }
-                return resolve([]);
+                return resolve(cache.get());
             });
         })
     }
