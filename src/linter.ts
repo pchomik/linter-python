@@ -59,7 +59,7 @@ export class PluginLinter {
         logger.log('>>> END <<<');
 
         if (!canExecute(cmd)) {
-            atom.notifications.addError(`Provided path doesn't exist.\n\n${cmd}\n\nPlease fix pylama path.`);
+            atom.notifications.addError(`Provided path doesn't exist.\n\n${cmd}\n\nPlease fix pylama path or install latest version.`);
             return Promise.resolve(cache.get());
         }
 

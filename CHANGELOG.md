@@ -1,8 +1,14 @@
+#### 3.0.5
+* (#28) Add cache functionality
+* (#25) Remove underline options from plugin configuration
+* (#27) Documentation update
+* (#26) Regenerate new plugin exaples
+
 #### 3.0.4
 * Rewrite whole plugin to typescript
-* Fix #23 Remove logic responsible by disabling console
-* Implement #22 Link for plugin errors
-* Implement #17 Change "Lint trigger" option names
+* (#23) Remove logic responsible by disabling console
+* (#22) Add link to lint errors
+* (#17) Change "Lint trigger" option names
 * Fix few deployment issues
 * Add colorLink option
 
