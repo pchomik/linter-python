@@ -50,13 +50,19 @@ export class MessageParser {
             }
         }
         logger.log("ALL RESULTS");
-        logger.log(results);
+        for (let result of results)
+          logger.log(result);
         return results;
     }
 
     buildMessage(textEditor, result, config) {
         logger.log(">>> ADD BUILD MESSAGE LOGS");
-        logger.log(`> result = ${result}`);
+        logger.log(`> filename = ${result.fileName}`);
+        logger.log(`> row = ${result.row}`);
+        logger.log(`> col = ${result.col}`);
+        logger.log(`> error = ${result.error}`);
+        logger.log(`> message = ${result.message}`);
+        logger.log(`> tool = ${result.tool}`);
         let line = textEditor.getBuffer().lineForRow(result.row - 1);
         logger.log(`> line = ${line}`);
         let filePath = textEditor.getPath();
