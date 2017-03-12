@@ -22,10 +22,16 @@ export class ProcessRunner {
             let messages = []
             cp.spawn(cmd, args, {cwd: projectDir})
             .then((result) => {
+                // Pylama's exit code is 0 when there are no linting errors.
+                logger.log(">>> NO ERRORS <<<");
+                return resolve(messages);
+            })
+            .catch((error) => {
+                // Pylama's exit code is 1 when there are linting errors.
                 logger.log(">>> RAW OUTPUT <<<");
-                logger.log(result.stdout);
+                logger.log(error.stdout);
                 logger.log(">>> END <<<");
-                let parsedLines = this.parser.parseLines(result.stdout);
+                let parsedLines = this.parser.parseLines(error.stdout);
                 for (let parsedLine of parsedLines) {
                     let message = this.parser.buildMessage(textEditor, parsedLine, config);
                     messages.unshift(message);
@@ -36,17 +42,6 @@ export class ProcessRunner {
                 }
                 cache.store(messages);
                 return resolve(messages);
-            })
-            .catch((error) => {
-                atom.notifications.addError(`Execution finished with error:\n\n${error}`);
-                logger.log(">>> EXECUTION ERROR <<<");
-                logger.log(error);
-                logger.log(">>> END <<<");
-                runningFlag = false;
-                if(tempFile) {
-                    tempFile.clean();
-                }
-                return resolve(cache.get());
             });
         })
     }
