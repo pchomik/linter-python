@@ -1,3 +1,9 @@
+#### 3.1.1
+* Update release notes and readme file
+
+#### 3.1.0
+* (#31) Execution finished with error because of pylama exit code change
+
 #### 3.0.5
 * (#28) Add cache functionality
 * (#25) Remove underline options from plugin configuration

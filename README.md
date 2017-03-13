@@ -7,7 +7,7 @@ Plugin to lint python files. Whole logic based on pylama and pylama-pylint appli
 ## Requirements
 
 * python >= 2.7
-* pylama >= 7.0.9
+* pylama >= 7.3.3
 * pylama-pylint (optional)
 
 ## Atom linters
@@ -92,6 +92,7 @@ Pull requests, issues, issue investigation, reviews are more than welcome.
 
 * @linickx
 * @Arcanemagus
+* @Zebradil
 
 ## License
 
@@ -107,19 +108,14 @@ This section contains changes from last 3 releases.
 
 Full list of changes is available [here](https://raw.githubusercontent.com/pchomik/linter-python/master/CHANGELOG.md)
 
+#### 3.1.1
+* Update release notes and readme file
+
+#### 3.1.0
+* (#31) Execution finished with error because of pylama exit code change
+
 #### 3.0.5
 * (#28) Add cache functionality
 * (#25) Remove underline options from plugin configuration
 * (#27) Documentation update
 * (#26) Regenerate new plugin exaples
-
-#### 3.0.4
-* Rewrite whole plugin to typescript
-* (#23) Remove logic responsible by disabling console
-* (#22) Add link to lint errors
-* (#17) Change "Lint trigger" option names
-* Fix few deployment issues
-* Add colorLink option
-
-#### 2.1.7
-* Fix error if file is in edition without project
