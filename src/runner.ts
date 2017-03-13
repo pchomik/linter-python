@@ -24,6 +24,9 @@ export class ProcessRunner {
             .then((result) => {
                 // Pylama's exit code is 0 when there are no linting errors.
                 logger.log(">>> NO ERRORS <<<");
+                logger.log(">>> RAW OUTPUT <<<");
+                logger.log(result.stdout);
+                logger.log(">>> END <<<");
                 return resolve(messages);
             })
             .catch((error) => {
