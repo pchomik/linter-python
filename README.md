@@ -108,6 +108,9 @@ This section contains changes from last 3 releases.
 
 Full list of changes is available [here](https://raw.githubusercontent.com/pchomik/linter-python/master/CHANGELOG.md)
 
+#### 3.1.2
+* (#37) Fix issue: Cannot read property 'getPath' of undefined
+
 #### 3.1.1
 * Update release notes and readme file
 
