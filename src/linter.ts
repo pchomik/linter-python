@@ -39,8 +39,14 @@ export class PluginLinter {
 
     lint() {
         let textEditor = atom.workspace.getActiveTextEditor();
+        if (!atom.workspace.isTextEditor(textEditor)) {
+            return Promise.resolve(cache.get());
+        }
         let filePath = textEditor.getPath();
-        let projectDir = this.calculateProjectDir(textEditor, filePath);
+        if (!filePath) {
+            return Promise.resolve(cache.get());
+        }
+        let projectDir = this.calculateProjectDir(filePath);
         let cmd = this.runtimeConfig.executablePath;
         let args = [];
 
@@ -85,8 +91,8 @@ export class PluginLinter {
         return this.runner.run(textEditor, this.runtimeConfig, projectDir, cmd, args, this.running, this.tempFile);
     }
 
-    calculateProjectDir(textEditor, filePath) {
-        let projectDir = atom.project.relativizePath(textEditor.getPath())[0]
+    calculateProjectDir(filePath) {
+        let projectDir = atom.project.relativizePath(filePath)[0]
         if (projectDir) {
             return projectDir;
         }

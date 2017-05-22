@@ -1,3 +1,6 @@
+#### 3.1.2
+* (#37) Fix issue: Cannot read property 'getPath' of undefined
+
 #### 3.1.1
 * Update release notes and readme file
 
