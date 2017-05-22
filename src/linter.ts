@@ -39,7 +39,7 @@ export class PluginLinter {
 
     lint() {
         let textEditor = atom.workspace.getActiveTextEditor();
-        if (!textEditor) {
+        if (!atom.workspace.isTextEditor(textEditor)) {
             return Promise.resolve(cache.get());
         }
         let filePath = textEditor.getPath();
