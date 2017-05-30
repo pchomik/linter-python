@@ -19,6 +19,7 @@ export class MessageParser {
         let results = [];
         let lines = data.split('\n');
         for (let line of lines) {
+            line = line.trim();
             let found = line.match(genericRegexp);
             if (found) {
                 results.push({
