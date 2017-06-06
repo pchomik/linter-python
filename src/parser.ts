@@ -17,7 +17,7 @@ export class MessageParser {
 
     parseLines(data) {
         let results = [];
-        let lines = data.split('\n');
+        let lines = data.split(/(\r|\n|\r\n)/).filter(function(line) { return !!line.trim(); });
         for (let line of lines) {
             let found = line.match(genericRegexp);
             if (found) {
