@@ -16,11 +16,14 @@ const atomLinter = require('atom-linter');
 export class MessageParser {
 
     parseLines(data) {
+        logger.log("ADD PARSE LINES LOGS");
         let results = [];
         let lines = data.split(/(\r|\n|\r\n)/).filter(function(line) { return !!line.trim(); });
         for (let line of lines) {
             let found = line.match(genericRegexp);
             if (found) {
+                logger.log("FOUND 1");
+                logger.log(found);
                 results.push({
                     'fileName': found[1],
                     'row': Number(found[2]),
@@ -33,6 +36,8 @@ export class MessageParser {
             else {
                 found = line.match(pyflakesRegexp);
                 if (found) {
+                    logger.log("FOUND 2");
+                    logger.log(found);
                     results.push({
                         'fileName': found[1],
                         'row': Number(found[2]),
@@ -44,19 +49,33 @@ export class MessageParser {
                 }
             }
         }
+        logger.log("ALL RESULTS");
+        for (let result of results)
+          logger.log(result);
         return results;
     }
 
     buildMessage(textEditor, result, config) {
+        logger.log(">>> ADD BUILD MESSAGE LOGS");
+        logger.log(`> filename = ${result.fileName}`);
+        logger.log(`> row = ${result.row}`);
+        logger.log(`> col = ${result.col}`);
+        logger.log(`> error = ${result.error}`);
+        logger.log(`> message = ${result.message}`);
+        logger.log(`> tool = ${result.tool}`);
         let line = textEditor.getBuffer().lineForRow(result.row - 1);
+        logger.log(`> line = ${line}`);
         let filePath = textEditor.getPath();
         let resultType = 'Warning';
 
         if (result.error.indexOf('E') > -1 || result.error.indexOf('F') > -1) {
             resultType = 'Error';
         }
+
         let text = this.buildErrorText(result, config);
+        logger.log(`> text = ${text}`);
         let range = atomLinter.rangeFromLineNumber(textEditor, result.row -1, result.col - 1);
+        logger.log(`> range = ${range}`);
         let message = {
             type: resultType,
             html: text,
@@ -64,10 +83,10 @@ export class MessageParser {
             range: range,
         };
         logger.log(">>> NEW MESSAGE <<");
-        logger.log(`>     type = ${message.type}`)
-        logger.log(`>     html = ${message.html}`)
-        logger.log(`> filePath = ${message.filePath}`)
-        logger.log(`>    range = ${message.range}`)
+        logger.log(`>     type = ${message.type}`);
+        logger.log(`>     html = ${message.html}`);
+        logger.log(`> filePath = ${message.filePath}`);
+        logger.log(`>    range = ${message.range}`);
         logger.log(">>> END <<<");
         return message;
     }
